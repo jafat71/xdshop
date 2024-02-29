@@ -24,7 +24,7 @@ function Header() {
             <div className='flex items-center gap-2 cursor-pointer'
                 onClick={() => setRoute('home')}>
                 <GiImpLaugh className='text-2xl text-green-300 ring-4 ring-yellow-300 hover:scale-125 transition duration-200'></GiImpLaugh>
-                <p className='text-xl font-semibold text-white'>XD SHOP</p>
+                <p className='text-xl font-semibold text-white'>XD SHOP RELOADED</p>
             </div>
             <div className="flex gap-1">
                 <button
