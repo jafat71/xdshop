@@ -1,27 +1,30 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { addNewtask, deleteTask, getTasks, updateTask } from "../firebase/taskController"
+import { AppContext } from "../App"
 
 const Tasklist = () => {
 
     const [tasks, setTasks] = useState([])
     const [task, setTask] = useState({ title: "", desc: ""})
     const [mode, setMode] = useState('add')
+
+    const {user} = useContext(AppContext)
     
     const createNewTask = async () => {
-        await addNewtask(task)
+        await addNewtask(task).catch
         setTask({ title: "", desc: "" })
         recoverTasks()
     }
-
+    
     const recoverTasks = () => {
         getTasks().then(data => setTasks([...data]))
-            .catch((e) => console.log(e))
+        .catch((e) => console.log(e))
     }
-
-    useEffect(() => {
-        recoverTasks()
-    }, [])
-
+    
+        useEffect(() => {
+            recoverTasks()
+        }, [])
+    
     const editTask = (id) => {
         setMode("update")
         const taskToEdit = tasks.find(t => t.id === id)
@@ -51,6 +54,7 @@ const Tasklist = () => {
                     type='text'
                     value={task.title}
                     placeholder="Titulo de la tarea"
+                    disabled={!user}
                     className="border shadow outline-none 
                 focus:ring ring-rose-300 rounded px-2 py-1 mx-2 my-2 w-full "
                     onChange={(e) => setTask({ ...task, title: e.target.value })} />
@@ -60,6 +64,7 @@ const Tasklist = () => {
                     rows={3}
                     value={task.desc}
                     placeholder="Descripción de la tarea"
+                    disabled={!user}
                     className="border shadow outline-none 
                 focus:ring ring-rose-300 rounded px-2 py-1 mx-2 my-2 w-full"
                     onChange={(e) => setTask({ ...task, desc: e.target.value })} />
@@ -68,7 +73,8 @@ const Tasklist = () => {
                     className="bg-blue-500 text-white 
                 rounded shadow py-2 hover:bg-green-500 
                 hover:text-white transition duration-200 
-                text-bold text-lg"
+                text-bold text-lg disabled:bg-gray-300"
+                    disabled={!user}
                     onClick={mode==="update" ? updateExistingTask :createNewTask}>
                     {mode==="update" ? <div>Editar</div> : <div>Añadir</div>}
                 </button>
@@ -103,7 +109,10 @@ const Tasklist = () => {
                         ))
                     }
                 </div>
-
+                {user 
+                ? <p className="text-bold text-green-400">Usuario logeado: {user.email}</p>
+                : <p className="text-bold text-rose-700">Log in to see your notes</p>
+                }
             </div>
         </>
     )
