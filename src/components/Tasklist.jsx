@@ -42,6 +42,7 @@ const Tasklist = () => {
         await deleteTask(id)
         recoverTasks()
     }
+
     return (
 
         <>
@@ -82,7 +83,8 @@ const Tasklist = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-x-4">
                     {
                         tasks.map(t => (
-                            <div key={t.id} className="rounded-lg border border-blue-500 p-4 flex flex-col gap-2 my-2">
+                            <div key={t.id} 
+                            className={`${!user?'hidden':'block'} rounded-lg border border-blue-500 p-4 flex flex-col gap-2 my-2`}>
                                 <div className="font-bold">
                                     Titulo: {t.title}
                                 </div>

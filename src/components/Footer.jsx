@@ -8,22 +8,22 @@ const Footer = () => {
     return (
         <footer className="flex flex-col items-center fixed h-16  bg-blue-500 text-black w-full bottom-0">
                 <div className="mt-1">
-                    <button onClick={()=>{
+                    <button id={'home'} onClick={()=>{setRoute
                         setRoute("home")
                     }}>
                         <IoHomeSharp className="text-2xl text-white mr-2 rounded rounded-full hover:bg-yellow-200 hover:text-black transition duration-200" />
                     </button>
-                    <button onClick={()=>{
+                    <button id={'tasklist'} onClick={()=>{
                         setRoute("tasklist")
                     }}>
                         <BsList className="text-2xl text-white mr-2 rounded rounded-full hover:bg-yellow-200 hover:text-black transition duration-200" />
                     </button>
-                    <button onClick={()=>{
+                    <button id={'shopping'} onClick={()=>{
                         setRoute("shopping")
                     }}>
                         <BsCart className="text-2xl text-white mr-2 rounded rounded-full hover:bg-yellow-200 hover:text-black transition duration-200" />
                     </button>
-                    <button onClick={()=>{
+                    <button  id={'login'} onClick={()=>{
                         setRoute("login")
                     }}>
                         <IoLogIn className="text-2xl text-white mr-2 rounded rounded-full hover:bg-yellow-200 hover:text-black transition duration-200" />

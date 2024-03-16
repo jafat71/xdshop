@@ -47,6 +47,7 @@ const Login = () => {
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
+                toast("Usuario/Contraseña incorrecto :(")
             });
     }
     return (
@@ -76,7 +77,7 @@ const Login = () => {
                         placeholder="Your Password"
                     ></input>
                     <button
-                        className="bg-green-700
+                        className="form-btn bg-green-700
                 text-white
                 hover:bg-green-300 
                 hover:text-black py-1 px-2 rounded-full transition duration-200"
